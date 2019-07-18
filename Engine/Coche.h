@@ -3,6 +3,7 @@
 #include <vector>
 #include "Graphics.h"
 #include "Forma.h"
+#include "Grid.h"
 
 class Coche : public Forma {
 private:
@@ -17,6 +18,8 @@ private:
 	double deceleracion_frente; // Deceleracion en la direccion que apunta el coche
 	double deceleracion_lat; // Deceleracion lateral
 
+
+	
 	// Puede que las vuelva a usar:
 	// int cuentaRelojMax = 20; // Para evitar cosas raras
 	// int cuentaReloj = 0; // valor inicial

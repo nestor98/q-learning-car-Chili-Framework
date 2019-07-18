@@ -319,10 +319,10 @@ void Graphics::PutPixel( int x, int y, Color c )
 	// Para poder salir hacia arriba y abajo de la pantalla sin crashearlo:
 	unsigned xmod = mod_mates(x, int(Graphics::ScreenWidth));
 	unsigned ymod = mod_mates(y, int(Graphics::ScreenHeight));
-	assert( x >= 0 );
-	assert( x < int( Graphics::ScreenWidth ) );
-	assert( y >= 0 );
-	assert( y < int( Graphics::ScreenHeight ) );
+	assert( xmod >= 0 );
+	assert( xmod < int( Graphics::ScreenWidth ) );
+	assert( ymod >= 0 );
+	assert( ymod < int( Graphics::ScreenHeight ) );
 	pSysBuffer[Graphics::ScreenWidth * ymod + xmod] = c; // (Ponia x, y en vez de xmod)
 }
 
@@ -336,9 +336,6 @@ void Graphics::dibujarRect(const int posx, const int posy, const int tamx, const
 	// Esquina superior izquierda:
 	int posx_izq = posx - tamx / 2; 
 	int posy_arr = posy - tamy / 2;
-	// Comprobamos que no se vaya a salir:
-	assert(posx_izq >= 0 && posx_izq + tamx < int(Graphics::ScreenWidth));
-	assert(posy_arr >= 0 && posy_arr + tamy < int(Graphics::ScreenHeight));
 	for (int i = 0; i < tamx; i++) { // Ponemos los pixeles a lo bestia
 		for (int j = 0; j < tamy; j++) {
 			PutPixel(posx_izq + i, posy_arr + j, r, g, b);

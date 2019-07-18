@@ -60,7 +60,7 @@ public:
 	void dibujarCuad(const int posx, const int posy, const int tam, const int r = 255, const int g = 255, const int b = 255);
 	// Dibuja un rectangulo de tamaño <tamx>, <tamy> centrado en posx, posy, con los colores dados (por defecto blanco)
 	void dibujarRect(const int posx, const int posy, const int tamx, const int tamy, const int r = 255, const int g = 255, const int b = 255);
-	
+
 	// Dibuja una mala imitacion de un coche de tamaño <tam>, alrededor de posx, posy, con los colores dados (por defecto blanco)
 	void dibujarCoche(const int posx, const int posy, const int tam, const int orient, const int r = 255, const int g = 255, const int b = 255);
 

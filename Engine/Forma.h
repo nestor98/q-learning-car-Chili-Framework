@@ -1,10 +1,12 @@
 #pragma once
+#include <vector>
 #include "Graphics.h"
 #include "Punto.h"
 
 class Forma {
 protected:
 	Punto pos; // posicion central
+	std::vector<std::pair<int, int>> cuadrantes; // Donde esta, para las colisiones 
 	int r, g, b; // Color
 	Graphics& gfx;
 public:

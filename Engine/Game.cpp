@@ -25,7 +25,8 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	coche(gfx, gfx.ScreenWidth/2, gfx.ScreenHeight/2, 22, 0.02, 0.15, 255, 20, 20)
+	coche(gfx, gfx.ScreenWidth/2, gfx.ScreenHeight/2, 22),
+	grid(gfx)
 {
 }
 
@@ -50,14 +51,10 @@ void Game::procesarRaton(Mouse::Event& e) {
 			p.asignar(x, y);
 			dibujando = true;
 		}
-		else {
-			if (!figs.empty())  figs.pop_back();
-			dibujarForma(p.x(), p.y(), x, y);
-			
-		}
 		break;
 	case (Mouse::Event::Type::LRelease):
 		if (dibujando)
+			//if (!figs.empty())  figs.pop_back();
 			dibujarForma(p.x(), p.y(), wnd.mouse.GetPosX(), wnd.mouse.GetPosY());
 		dibujando = false;
 		break;
@@ -132,10 +129,15 @@ void Game::UpdateModel()
 		figs.clear();
 	}
 	if (wnd.kbd.KeyIsPressed('Q')) {
-		cambiarForma(); // Cambiamos seleccion
-		if (wnd.mouse.LeftIsPressed()) {
-			if (!figs.empty()) figs.pop_back();
-			dibujarForma(p.x(), p.y(), wnd.mouse.GetPosX(), wnd.mouse.GetPosY());
+		auto qahora = Clock::now();
+		int dt = std::chrono::duration_cast<std::chrono::milliseconds>(qahora - qantes).count();
+		if (dt > 500) { // Si no le pongo el control de tiempo se vuelve loco
+			qantes = qahora;
+			cambiarForma(); // Cambiamos seleccion
+			if (wnd.mouse.LeftIsPressed()) {
+				if (!figs.empty()) figs.pop_back();
+				dibujarForma(p.x(), p.y(), wnd.mouse.GetPosX(), wnd.mouse.GetPosY());
+			}
 		}
 	}
 	// Raton:
@@ -152,10 +154,17 @@ void Game::UpdateModel()
 
 
 void Game::ComposeFrame() {
+	auto ahora = Clock::now();
+	static int cuadrante = 0;
+	int dt = std::chrono::duration_cast<std::chrono::milliseconds>(ahora - antes).count();
+	if (dt > 1500) {
+		cuadrante++;
+		antes = ahora;
+	}
+	grid.dibujar(cuadrante);
 	for (auto& f : figs) {
 		f->dibujar();
 	}
 
 	coche.dibujar();
-
 }

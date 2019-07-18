@@ -20,6 +20,8 @@
  ******************************************************************************************/
 #pragma once
 
+
+#include <chrono>
 #include <memory> // shared_ptr
 #include "Keyboard.h"
 #include "Mouse.h"
@@ -42,11 +44,16 @@ private:
 		rectangulo
 	};
 	formas seleccionada = formas::recta;
-	std::vector<std::shared_ptr<Forma>> figs;// = { std::make_shared<Derived>() };; // Figuras del circuito
+	std::vector<std::shared_ptr<Forma>> figs; // Figuras del circuito
 	unsigned grosor = 2; // de las rectas
-	Punto p; // inicio de la recta dibujada
+	Punto p; // inicio de la figura dibujada
 	bool dibujando = false; // no se ha soltado el raton 
 							// (seguro que se puede hacer de otra forma)
+	Grid grid; // Para la colision
+	// Controlar tiempos:
+	typedef std::chrono::high_resolution_clock Clock;
+	Clock::time_point antes = Clock::now();
+	Clock::time_point qantes = Clock::now(); // Al pulsar la q
 	/********************************/
 
 public:
