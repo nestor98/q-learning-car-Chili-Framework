@@ -24,7 +24,7 @@ void Coche::acelerar(const double nueva, const double dir)
 	orientacion = dir;
 	int indice = int(dir) % 2;
 	acel[indice] = (dir == 0 || dir == 3) ? (nueva) : (-nueva); // elegimos signo
-	gfx.dibujarCuad(int(orientacion)+20, int(orientacion)+20, 5, 255, 255, 255);
+	// gfx.dibujarCuad(int(orientacion)+20, int(orientacion)+20, 5, 255, 255, 255); // debug a lo bestia
 	decelerar_lateral(indice);
 }
 
@@ -36,7 +36,6 @@ double minima_vel(const double v, const double vmax) {
 
 void Coche::mover() {
 	for (int i = 0; i < 2; i++) {
-		gfx.dibujarCuad(i*4+10, i*4+10, 5, 255, 255, 255);
 		vel[i] = minima_vel(vel[i] + acel[i], vmax);
 		pos[i] += vel[i];
 	}
@@ -51,7 +50,6 @@ void Coche::decelerar_lateral(const int i) {
 		acel[1 - i] = vel[1 - i] = 0;
 	}
 	else {
-		//acel[1 - i] = deceleracion_lat;
 		acel[1 - i] = (vel[1 - i] > 0) ? (-deceleracion_lat) : (deceleracion_lat);
 	}
 }
@@ -63,12 +61,13 @@ void Coche::decelerar() {
 		acel[indice] = vel[indice] = 0;
 	}
 	else {
-		//acel[indice] = deceleracion_frente;
 		acel[indice] = (vel[indice]>0) ? (-deceleracion_frente) : (deceleracion_frente);
 	}
 	decelerar_lateral(indice);
 }
 
+
+// En algun momento aprendere a dibujar rectangulos girados. Que bajo han caido mis expectativas vitales
 //void Coche::rotar(const bool dcha) {
 //	if (cuentaReloj <= 0) {
 //		cuentaReloj = cuentaRelojMax;
