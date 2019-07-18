@@ -1,8 +1,8 @@
 #include "Forma.h"
 
-Forma::Forma(const int x, const int y, Graphics& gr_, const int r_, const int g_, const int b_) 
+Forma::Forma(const int x, const int y, Graphics& gfx, Grid& grid, const int r_, const int g_, const int b_) 
 	:
-	pos(x, y), gfx(gr_), r(r_), g(g_), b(b_)
+	pos(x, y), m_gfx(gfx), m_grid(grid), r(r_), g(g_), b(b_)
 {
 	//cuadrantes.first = x;
 }

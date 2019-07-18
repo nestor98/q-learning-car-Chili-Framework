@@ -18,14 +18,13 @@ private:
 	double deceleracion_frente; // Deceleracion en la direccion que apunta el coche
 	double deceleracion_lat; // Deceleracion lateral
 
-
 	
 	// Puede que las vuelva a usar:
 	// int cuentaRelojMax = 20; // Para evitar cosas raras
 	// int cuentaReloj = 0; // valor inicial
 
 public:
-	Coche(Graphics& gfx_, const int posx_, const int posy_, const int tam_, const double decel_frente = 0.02, 
+	Coche(Graphics& gfx_, const int posx_, const int posy_, const int tam_, Grid& grid, const double decel_frente = 0.02, 
 		  const double decel_lat = 0.15, const int r_=255, const int g_=255, const int b_=255);
 	
 	~Coche();
