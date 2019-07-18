@@ -1,11 +1,17 @@
 #include "Grid.h"
 #include <cassert>
-Grid::Grid(Graphics& gfx, const unsigned nLat, const unsigned nVert) 
+
+Grid::Grid(Graphics& gfx, const unsigned nCol, const unsigned nFil) 
 	:
-	m_gfx(gfx), m_N(nLat), m_M(nVert), 
-	pixelesLat(gfx.ScreenWidth / double(nLat)), 
-	pixelesVer(gfx.ScreenHeight / double(nVert))
+	m_gfx(gfx), m_N(nCol), m_M(nFil), 
+	pixelesLat(gfx.ScreenWidth / double(nCol)), 
+	pixelesVer(gfx.ScreenHeight / double(nFil))
 {
+}
+
+int Grid::numColumnas() const
+{
+	return m_N;
 }
 
 bool Grid::enMismoCuadrante(const Forma & una, const Forma & otra) const
@@ -25,6 +31,11 @@ int Grid::cuadranteDePos(const int x, const int y) const {
 
 std::pair<int, int> Grid::coordenadas(const unsigned cuadrante) const {
 	return {cuadrante%m_N, cuadrante/m_N};
+}
+
+void Grid::cuadrantesDeForma(const Forma& f, std::vector<int>& cuadrantes) {
+	cuadrantes.clear();
+	f.mis_cuadrantes(cuadrantes);
 }
 
 void Grid::dibujar(const int cuadrante) const

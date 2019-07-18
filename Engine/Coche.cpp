@@ -34,11 +34,16 @@ double minima_vel(const double v, const double vmax) {
 	return (v < 0) ? (std::max(v, -vmax)) : (std::min(v, vmax));
 }
 
+void Coche::actualizarCuadrantes() {
+
+}
+
 void Coche::mover() {
 	for (int i = 0; i < 2; i++) {
 		vel[i] = minima_vel(vel[i] + acel[i], vmax);
 		pos[i] += int(vel[i]);
 	}
+	actualizarCuadrantes();
 }
 
 bool Coche::colision(const Forma& otra) const {

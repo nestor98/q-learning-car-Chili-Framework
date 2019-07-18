@@ -19,6 +19,8 @@ public:
 	virtual void dibujar() const = 0;
 
 	virtual bool colision(const Forma&) const = 0;
+
+	virtual void mis_cuadrantes(std::vector<int>& cuads) const = 0;
 	 
 	virtual void mod_grosor(const unsigned grosor);
 };

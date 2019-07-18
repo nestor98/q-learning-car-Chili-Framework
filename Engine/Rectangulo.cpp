@@ -17,3 +17,25 @@ bool Rectangulo::colision(const Forma& otra) const
 void Rectangulo::dibujar() const {
 	m_gfx.dibujarRect(pos.x(), pos.y(), tamx, tamy, r, g, b);
 }
+
+void Rectangulo::mis_cuadrantes(std::vector<int>& cuads) const
+{
+	int tamxmed = tamx / 2;
+	int tamymed = tamy / 2;
+	Punto arribaIzq(pos.x() - tamxmed, pos.y() - tamymed);
+	Punto abajoDer(pos.x() + tamxmed, pos.y() + tamymed);
+	int cuad1 = m_grid.cuadranteDePos(arribaIzq);
+	int cuad2 = m_grid.cuadranteDePos(abajoDer);
+    arribaIzq.asignar(m_grid.coordenadas(cuad1));
+	for (int i = cuad1; i < cuad2; i++) {
+		cuads.push_back(i);
+		//Saltar cuando este fuera del rectangulo
+		/*   .  .  .  .  .  
+			 .  x  .  .  . 
+			 .  .  .  .  .
+			 .  .  .  x  .
+			 .  .  .  .  .
+		*/
+	}
+
+}

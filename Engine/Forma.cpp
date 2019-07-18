@@ -7,6 +7,7 @@ Forma::Forma(const int x, const int y, Graphics& gfx, Grid& grid, const int r_, 
 	//cuadrantes.first = x;
 }
 
+
 void Forma::mod_grosor(const unsigned grosor)
 {
 	// No deberias llamar a esta si no eres una recta

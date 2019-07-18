@@ -16,4 +16,6 @@ public:
 
 	void dibujar() const override;
 
+	void mis_cuadrantes(std::vector<int>& cuads) const override;
+
 };

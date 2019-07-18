@@ -9,7 +9,7 @@ class Coche : public Forma {
 private:
 	//std::vector<int> pos; // la pos esta ahora en Forma.h
 	int tam;
-	double orientacion = 1; // Hacia donde mira (de momento 0->dcha, 1->arriba, 2->izq, 3-> abajo)
+	int orientacion = 1; // Hacia donde mira (de momento 0->dcha, 1->arriba, 2->izq, 3-> abajo)
 
 	std::vector<double> vel = { 0, 0 };  // Velocidad ejes x, y
 	double vmax = 7.5;					 // velocidad max
@@ -18,7 +18,7 @@ private:
 	double deceleracion_frente; // Deceleracion en la direccion que apunta el coche
 	double deceleracion_lat; // Deceleracion lateral
 
-	
+	std::vector<int> cuadrantes;
 	// Puede que las vuelva a usar:
 	// int cuentaRelojMax = 20; // Para evitar cosas raras
 	// int cuentaReloj = 0; // valor inicial
@@ -35,6 +35,8 @@ public:
 	// Asigna al coche su nueva aceleracion en la direccion dir (como orientacion)
 	void acelerar(const double nueva, const double dir);
 
+	void actualizarCuadrantes();
+
 	// Actualiza su velocidad (a partir de su acel) y su posicion
 	void mover();
 
@@ -45,6 +47,8 @@ public:
 	// void rotar(const bool dcha);
 
 	bool colision(const Forma& otra) const override;
+
+	void mis_cuadrantes(std::vector<int>& cuads) const override;
 
 private:
 	// Auxiliar de decelerar

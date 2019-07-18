@@ -18,6 +18,6 @@ public:
 	// Para modificar el grosor
 	void mod_grosor(const unsigned grosor);
 
-
+	void mis_cuadrantes(std::vector<int>& cuads) const override;
 	/*Recta& operator= (const Recta& r);*/
 };
