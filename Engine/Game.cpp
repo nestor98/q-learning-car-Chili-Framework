@@ -25,8 +25,9 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	coche(gfx, gfx.ScreenWidth/2, gfx.ScreenHeight/2, 22),
-	grid(gfx)
+	grid(gfx),
+	coche(gfx, gfx.ScreenWidth/2, gfx.ScreenHeight/2, 22, grid)
+	
 {
 }
 
@@ -95,11 +96,11 @@ void Game::dibujarForma(const int x1, const int y1, const int x2, const int y2)
 {
 	switch (seleccionada) {
 	case (formas::recta) :
-		figs.push_back(std::make_shared<Recta>(Recta(gfx, x1, y1, x2, y2, grosor)));
+		figs.push_back(std::make_shared<Recta>(Recta(gfx, grid, x1, y1, x2, y2, grosor)));
 		break;
 	
 	case (formas::rectangulo):
-		figs.push_back(std::make_shared<Rectangulo>(Rectangulo(x1, y1, x2, y2, gfx)));
+		figs.push_back(std::make_shared<Rectangulo>(Rectangulo(x1, y1, x2, y2, gfx, grid)));
 		break;
 	}
 }
@@ -130,7 +131,7 @@ void Game::UpdateModel()
 	}
 	if (wnd.kbd.KeyIsPressed('Q')) {
 		auto qahora = Clock::now();
-		int dt = std::chrono::duration_cast<std::chrono::milliseconds>(qahora - qantes).count();
+		__int64 dt = std::chrono::duration_cast<std::chrono::milliseconds>(qahora - qantes).count();
 		if (dt > 500) { // Si no le pongo el control de tiempo se vuelve loco
 			qantes = qahora;
 			cambiarForma(); // Cambiamos seleccion
@@ -156,7 +157,7 @@ void Game::UpdateModel()
 void Game::ComposeFrame() {
 	auto ahora = Clock::now();
 	static int cuadrante = 0;
-	int dt = std::chrono::duration_cast<std::chrono::milliseconds>(ahora - antes).count();
+	__int64 dt = std::chrono::duration_cast<std::chrono::milliseconds>(ahora - antes).count();
 	if (dt > 1500) {
 		cuadrante++;
 		antes = ahora;

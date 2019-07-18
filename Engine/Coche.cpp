@@ -6,17 +6,17 @@
 
 
 
-Coche::Coche(Graphics& gfx_, const int posx_, const int posy_, const int tam_, const double decel_frente,
+Coche::Coche(Graphics& gfx_, const int posx_, const int posy_, const int tam_, Grid& grid, const double decel_frente,
 			 const double decel_lat, const int r_, const int g_, const int b_)
 	: 
-	tam(tam_), Forma(posx_, posy_, gfx_, r_, g_, b_),
+	tam(tam_), Forma(posx_, posy_, gfx_, grid, r_, g_, b_),
 	deceleracion_frente(decel_frente), deceleracion_lat(decel_lat)
 {}
 
 Coche::~Coche() {}
 
 void Coche::dibujar() const {
-	gfx.dibujarCoche(pos.x(), pos.y(), tam, orientacion, r, g, b);
+	m_gfx.dibujarCoche(pos.x(), pos.y(), tam, orientacion, r, g, b);
 }
 
 void Coche::acelerar(const double nueva, const double dir)
@@ -37,7 +37,7 @@ double minima_vel(const double v, const double vmax) {
 void Coche::mover() {
 	for (int i = 0; i < 2; i++) {
 		vel[i] = minima_vel(vel[i] + acel[i], vmax);
-		pos[i] += vel[i];
+		pos[i] += int(vel[i]);
 	}
 }
 

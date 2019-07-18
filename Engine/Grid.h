@@ -4,7 +4,9 @@
 #pragma once
 #include "Graphics.h"
 #include "Punto.h"
-#include "Forma.h"
+//#include "Forma.h" // Dep circular!
+
+class Forma;
 
 class Grid {
 private:

@@ -1,8 +1,8 @@
 #include "Recta.h"
 
-Recta::Recta(Graphics& gfx, const int x1, const int y1, const int x2, const int y2, const unsigned grosor, const int r, const int g, const int b)
+Recta::Recta(Graphics& gfx, Grid& grid, const int x1, const int y1, const int x2, const int y2, const unsigned grosor, const int r, const int g, const int b)
 	:
-	Forma((x1+x2)/2, (y1+y2)/2, gfx, r, g, b), ini(x1,y1), fin(x2, y2), m_grosor(grosor)
+	Forma((x1+x2)/2, (y1+y2)/2, gfx, grid, r, g, b), ini(x1,y1), fin(x2, y2), m_grosor(grosor)
 {}
 
 
@@ -14,7 +14,7 @@ bool Recta::colision(const Forma & otra) const
 
 void Recta::dibujar() const
 {
-	gfx.dibujarLinea(ini.x(), ini.y(), fin.x(), fin.y(), m_grosor, r, g, b);
+	m_gfx.dibujarLinea(ini.x(), ini.y(), fin.x(), fin.y(), m_grosor, r, g, b);
 }
 
 void Recta::mod_grosor(const unsigned grosor)
