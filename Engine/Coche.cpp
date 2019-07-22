@@ -50,6 +50,11 @@ bool Coche::colision(const Forma& otra) const {
 	return false;
 }
 
+void Coche::mis_cuadrantes(std::vector<int>& cuads) const
+{
+	cuads.empty(); // De momento vacio
+}
+
 void Coche::decelerar_lateral(const int i) {
 	if (vel[1 - i] > -0.08 && vel[1 - i] < 0.08) {
 		acel[1 - i] = vel[1 - i] = 0;

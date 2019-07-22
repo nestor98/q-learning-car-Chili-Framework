@@ -16,6 +16,7 @@ public:
 
 	void dibujar() const override;
 
+	// Asigna a cuads los indices de los cuadrantes que ocupa el rectangulo
 	void mis_cuadrantes(std::vector<int>& cuads) const override;
 
 };

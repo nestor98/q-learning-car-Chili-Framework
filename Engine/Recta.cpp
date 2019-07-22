@@ -22,6 +22,16 @@ void Recta::mod_grosor(const unsigned grosor)
 	m_grosor = grosor;
 }
 
+void Recta::mis_cuadrantes(std::vector<int>& cuads) const
+{
+	// Cuadrantes de los ptos ini y fin
+	int cuad1 = m_grid.cuadranteDePos(ini);
+	int cuad2 = m_grid.cuadranteDePos(fin);
+
+	cuads.empty(); // De momento vacio
+
+}
+
 
 // Algo falla aqui
 //Recta& Recta::operator=(const Recta& r)

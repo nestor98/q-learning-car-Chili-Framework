@@ -1,5 +1,6 @@
-#include "Grid.h"
 #include <cassert>
+#include "Grid.h"
+#include "Forma.h" // Se incluye aqui por lo de las dep circulares
 
 Grid::Grid(Graphics& gfx, const unsigned nCol, const unsigned nFil) 
 	:
@@ -35,7 +36,7 @@ std::pair<int, int> Grid::coordenadas(const unsigned cuadrante) const {
 
 void Grid::cuadrantesDeForma(const Forma& f, std::vector<int>& cuadrantes) {
 	cuadrantes.clear();
-	f.mis_cuadrantes(cuadrantes);
+	//f.mis_cuadrantes(cuadrantes);
 }
 
 void Grid::dibujar(const int cuadrante) const
